@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{title}}</title>
+
+    <!-- Bootstrap -->
+    <link href="gentelella/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="gentelella/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="gentelella/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- jVectorMap -->
+    <link href="gentelella/css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href="css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          {% block sidebar %}
+            {% include 'partials/sidebar.html.twig' %}
+          {% endblock %}
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          {% block topnav %}
+            {% include 'partials/topnav.html.twig' %}
+          {% endblock %}
+        </div>
+
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          {% block content %} {% endblock %}
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          {% block footer %}
+            {% include 'partials/footer.html.twig' %}
+          {% endblock %}
+        </footer>
+        <!-- /footer content -->
+
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="gentelella/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="gentelella/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="gentelella/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="gentelella/vendors/bernii/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="gentelella/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="gentelella/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="gentelella/vendors/Flot/jquery.flot.js"></script>
+    <script src="gentelella/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="gentelella/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="gentelella/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="gentelella/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="gentelella/js/flot/jquery.flot.orderBars.js"></script>
+    <script src="gentelella/js/flot/date.js"></script>
+    <script src="gentelella/js/flot/jquery.flot.spline.js"></script>
+    <script src="gentelella/js/flot/curvedLines.js"></script>
+    <!-- jVectorMap -->
+    <script src="gentelella/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="gentelella/js/moment/moment.min.js"></script>
+    <script src="gentelella/js/datepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.js"></script>
+
+    {% block jsdata %}{% endblock %}
+
+  </body>
+</html>
