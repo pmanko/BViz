@@ -3,17 +3,25 @@ use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
 require __DIR__ . '/../vendor/autoload.php';
+require '../models/user.php';
+require '../handlers/exceptions.php';
 
-$config['displayErrorDetails'] = true;
-$config['addContentLengthHeader'] = false;
-
-$config['db']['host']   = "localhost";
-$config['db']['user']   = "user";
-$config['db']['pass']   = "password";
-$config['db']['dbname'] = "exampleapp";
+$config = include('../config.php');
 
 $app = new \Slim\App(['settings' => $config ]);
+
 $container = $app->getContainer();
+
+$capsule = new \Illuminate\Database\Capsule\Manager;
+$capsule->addConnection($container['settings']['db']);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+
+$capsule->getContainer()->singleton(
+  Illuminate\Contracts\Debug\ExceptionHandler::class,
+  App\Exceptions\Handler::class
+);
+
 
 // Register component on container
 // Register component on container
@@ -71,6 +79,29 @@ $app->get('/patient-profile', function (Request $request, Response $response) {
 
     $response = $this->view->render($response, "profile.phtml");
     return $response;
+});
+
+// USERS
+$app->get('/users/', function($request, $response) {
+  return $response->getBody()->write(User::all()->toJson());
+});
+
+$app->get('/users/{id}/', function($request, $response, $args) {
+  $id = $args['id'];
+  $user = User::find($id);
+  $response->getBody()->write($user->toJson());
+  return $response;
+});
+
+$app->post('/users/', function($request, $response, $args) {
+  $data = $request->getParsedBody();
+  $user = new User();
+  $user->username = $data['username'];
+  $user->id = $data['id'];
+
+  $user->save();
+
+  return $response->withStatus(201)->getBody()->write($user->toJson());
 });
 
 $app->run();
